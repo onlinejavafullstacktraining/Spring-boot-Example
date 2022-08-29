@@ -1,0 +1,1 @@
+insert into Login values (1234, 'user_name','password');
