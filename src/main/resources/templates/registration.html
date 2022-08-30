@@ -18,44 +18,54 @@
                     <div class="col-md-6 form-group">
                         <label>FirstName</label>
                         <input type="text" class="form-control" th:field="*{firstname}">
+                        <span class="validationError" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">First Name</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>LastName</label>
                         <input type="text" class="form-control" th:field="*{lastname}">
+                        <span class="validationError" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Last Name</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>UserName</label>
                         <input type="text" class="form-control" th:field="*{username}">
+                        <span class="validationError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Password</label>
                         <input type="password" class="form-control" th:field="*{password}">
+                        <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Confirm Password</label>
                         <input type="password" class="form-control" th:field="*{confirmPassword}">
+                        <span class="validationError" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">confirmPassword</span>
                     </div>
 
                      <div class="col-md-6 form-group">
                         <label>Phone</label>
                         <input type="text" class="form-control" th:field="*{phone}">
+                         <span class="validationError" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">phone</span>
                     </div>
                      <div class="col-md-6 form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" th:field="*{email}">
+                         <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>City</label>
                         <input type="text" class="form-control" th:field="*{city}">
+                        <span class="validationError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City</span>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address1</label>
                         <input type="text" class="form-control" th:field="*{state}">
+                        <span class="validationError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">state</span>
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Zipcode</label>
                         <input type="text" class="form-control" th:field="*{zipcode}">
+                        <span class="validationError" th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}">Zip code</span>
                     </div>
                     
                     
