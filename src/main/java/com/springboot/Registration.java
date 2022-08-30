@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -15,8 +17,10 @@ import javax.validation.constraints.Size;
 @Getter
 @ToString
 @NoArgsConstructor
+@Document
 public class Registration {
-	private Long id;
+	@Id
+	private long id;
 	@NotBlank
 	@Size(min = 5, message = "Username must be at least 5 characters ")
 	private String username;
