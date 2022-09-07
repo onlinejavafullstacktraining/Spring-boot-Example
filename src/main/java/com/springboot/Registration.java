@@ -5,21 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
-@Document
-public class Registration {
+@Entity
+@Table
+public class Registration implements Serializable {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@NotBlank
 	@Size(min = 5, message = "Username must be at least 5 characters ")
