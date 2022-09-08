@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Random;
 
 @Repository
@@ -16,20 +17,17 @@ public class UserRepository  {
     //private MongoTemplate mongoTemplate;
 
     private HibernateTemplate hibernateTemplate;
-    private AlertService alertService;
-    private EmailService emailService;
+
 
     @Autowired
-    public UserRepository(HibernateTemplate hibernateTemplate1,AlertService alertService,EmailService emailService){
-        this.hibernateTemplate=hibernateTemplate1;
-        this.alertService=alertService;
-        this.emailService=emailService;
+    public UserRepository(HibernateTemplate hibernateTemplate){
+        this.hibernateTemplate=hibernateTemplate;
+
     }
 
 
     public void saveRegistrationDetails(Registration registration) {
-        emailService.sendEmail(registration);
-        alertService.sendUserAlert(registration);
+
         hibernateTemplate.save(registration);
         /*long id = loadRandomValues();
         registration.setId(id);
@@ -88,5 +86,21 @@ public class UserRepository  {
         Random random = new Random();
         long id = random.nextInt(9999);
         return id;
+    }
+
+    public void updateRegistrationDetails(Registration registration) {
+        hibernateTemplate.saveOrUpdate(registration);
+    }
+
+    public List<Registration> getUserInfo() {
+        return hibernateTemplate.loadAll(Registration.class);
+    }
+
+    public Registration getUserInfo_Based_Id(long id) {
+        return hibernateTemplate.get(Registration.class,id);
+    }
+
+    public void deleteUserInfo(Registration registration) {
+        hibernateTemplate.delete(registration);
     }
 }

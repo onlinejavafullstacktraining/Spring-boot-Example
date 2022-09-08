@@ -1,5 +1,6 @@
 package com.springboot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import java.util.Objects;
 public class HomeController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public HomeController(UserRepository repository) {
+    public HomeController(UserRepository repository, UserService userService) {
         this.userRepository = repository;
+        this.userService = userService;
     }
 
     @RequestMapping("/")
@@ -38,12 +41,12 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/saveRegistrationDetails", method = RequestMethod.POST)
-    public String saveRegistrationInfo(@Valid Registration registration, Errors errors) {
+    public String saveRegistrationInfo(@Valid Registration registration, Errors errors) throws JsonProcessingException {
         if (errors.hasErrors()) {
             return "registration";
         }
         if (registration.getPassword().equals(registration.getConfirmPassword())) {
-            userRepository.saveRegistrationDetails(registration);
+            userService.saveRegistrationDetails(registration);
             return "/home";
         } else
             return "registration";

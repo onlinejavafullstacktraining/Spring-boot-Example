@@ -1,3 +1,4 @@
+
 package com.springboot;
 
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //super.configure(http);
         http
                 .authorizeRequests()
+                .antMatchers("/accessdenied","/CURDRequest/**","/logout").permitAll()
                 .antMatchers("/**")
                 .hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/accessdenied").permitAll()
-                .antMatchers("/logout").permitAll()
                 .and().formLogin().failureUrl("/accessdenied")
                 .and().logout().logoutSuccessUrl("/logout")
                 .and().csrf().disable();
@@ -31,3 +31,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("spring").password("{noop}security").authorities("ROLE_USER");
     }
 }
+
